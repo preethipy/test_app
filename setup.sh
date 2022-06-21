@@ -49,9 +49,9 @@ else
 	touch ~/kubeconfig/config
 fi
 
-gpg --quiet --batch --yes --decrypt --passphrase="$EXKEY" --output ~/trigger/secretex ~/trigger/secrets.gpg &&
+gpg --quiet --batch --yes --decrypt --passphrase="$EXKEY" --output ~/trigger/secrets ~/trigger/secrets.gpg &&
 
-tar -xf ~/trigger/secretex -C ~/trigger/ &&
+tar -xf ~/trigger/secrets -C ~/trigger/ &&
 
 mv ~/trigger/config ~/kubeconfig/ &&
 mv ~/trigger/Config.yaml ~/config/ &&
