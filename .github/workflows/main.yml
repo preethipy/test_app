@@ -1,4 +1,4 @@
-name: remote ssh command
+name: Automation trigger to launch containers
 on: [push]
 jobs:
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: copy file via ssh password
+    - name: copy scripts and necessary files via scp
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -17,7 +17,7 @@ jobs:
         source: "trigger.sh, setup.sh, secrets.gpg"
         target: "trigger"
         
-    - name: executing remote ssh commands using passwo$rd
+    - name: executing scripts
       uses: appleboy/ssh-action@master
       env:
         EXKEY: ${{ secrets.EXKEY }}
