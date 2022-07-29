@@ -21,6 +21,7 @@ jobs:
       uses: appleboy/ssh-action@master
       env:
         EXKEY: ${{ secrets.EXKEY }}
+        IP: ${{ secrets.HOST }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }} 
@@ -35,4 +36,7 @@ jobs:
           curl -s https://raw.githubusercontent.com/devsecopscloset/components/master/demo/trigger.sh -o ~/trigger/trigger.sh
           chmod +x $HOME/trigger/trigger.sh
           /bin/bash $HOME/trigger/trigger.sh
+          export IP=${{ secrets.HOST }}
+          echo $IP > $HOME/config/ip_vol/dd_ip.yaml
+          echo ${{ secrets.HOST }} > $HOME/config/ip_vol/dd_ip.yaml
           rm -rf ~/trigger
